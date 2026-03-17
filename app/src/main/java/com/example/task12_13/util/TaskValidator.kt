@@ -26,11 +26,11 @@ object TaskValidator {
      */
     fun validateTask(task: Task): ValidationResult {
         return when {
-            task.title.isBlank() -> Invalid("Title cannot be empty")
-            task.title.length < MIN_TITLE_LENGTH -> Invalid("Title must be at least $MIN_TITLE_LENGTH character")
-            task.title.length > MAX_TITLE_LENGTH -> Invalid("Title cannot exceed $MAX_TITLE_LENGTH characters")
-            task.description.length > MAX_DESCRIPTION_LENGTH -> Invalid("Description cannot exceed $MAX_DESCRIPTION_LENGTH characters")
-            else -> Valid
+            task.title.isBlank() -> ValidationResult.Invalid("Title cannot be empty")
+            task.title.length < MIN_TITLE_LENGTH -> ValidationResult.Invalid("Title must be at least $MIN_TITLE_LENGTH character")
+            task.title.length > MAX_TITLE_LENGTH -> ValidationResult.Invalid("Title cannot exceed $MAX_TITLE_LENGTH characters")
+            task.description.length > MAX_DESCRIPTION_LENGTH -> ValidationResult.Invalid("Description cannot exceed $MAX_DESCRIPTION_LENGTH characters")
+            else -> ValidationResult.Valid
         }
     }
 
@@ -41,10 +41,10 @@ object TaskValidator {
      */
     fun validateTitle(title: String): ValidationResult {
         return when {
-            title.isBlank() -> Invalid("Title cannot be empty")
-            title.length < MIN_TITLE_LENGTH -> Invalid("Title must be at least $MIN_TITLE_LENGTH character")
-            title.length > MAX_TITLE_LENGTH -> Invalid("Title cannot exceed $MAX_TITLE_LENGTH characters")
-            else -> Valid
+            title.isBlank() -> ValidationResult.Invalid("Title cannot be empty")
+            title.length < MIN_TITLE_LENGTH -> ValidationResult.Invalid("Title must be at least $MIN_TITLE_LENGTH character")
+            title.length > MAX_TITLE_LENGTH -> ValidationResult.Invalid("Title cannot exceed $MAX_TITLE_LENGTH characters")
+            else -> ValidationResult.Valid
         }
     }
 
@@ -55,8 +55,8 @@ object TaskValidator {
      */
     fun validateDescription(description: String): ValidationResult {
         return when {
-            description.length > MAX_DESCRIPTION_LENGTH -> Invalid("Description cannot exceed $MAX_DESCRIPTION_LENGTH characters")
-            else -> Valid
+            description.length > MAX_DESCRIPTION_LENGTH -> ValidationResult.Invalid("Description cannot exceed $MAX_DESCRIPTION_LENGTH characters")
+            else -> ValidationResult.Valid
         }
     }
 
@@ -66,7 +66,7 @@ object TaskValidator {
      * @return true if valid, false otherwise
      */
     fun isValid(task: Task): Boolean {
-        return validateTask(task) == Valid
+        return validateTask(task) == ValidationResult.Valid
     }
 
     /**
@@ -75,6 +75,6 @@ object TaskValidator {
      * @return true if valid, false otherwise
      */
     fun isTitleValid(title: String): Boolean {
-        return validateTitle(title) == Valid
+        return validateTitle(title) == ValidationResult.Valid
     }
 }

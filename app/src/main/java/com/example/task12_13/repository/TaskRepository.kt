@@ -83,7 +83,7 @@ class TaskRepository private constructor(
 
         if (!task.isValid()) {
             val error = IllegalStateException("Cannot add invalid task: title is blank")
-            Logger.e(TAG, error.message, error)
+            Logger.e(TAG, error.message ?: "Unknown error", error)
             continuation.resume(Result.failure(error))
             return@suspendCancellableCoroutine
         }
@@ -167,7 +167,7 @@ class TaskRepository private constructor(
 
         if (taskId.isEmpty()) {
             val error = IllegalArgumentException("Task ID cannot be empty")
-            Logger.e(TAG, error.message, error)
+            Logger.e(TAG, error.message ?: "Unknown error", error)
             continuation.resume(Result.failure(error))
             return@suspendCancellableCoroutine
         }
@@ -206,14 +206,14 @@ class TaskRepository private constructor(
 
         if (task.id.isEmpty()) {
             val error = IllegalArgumentException("Task ID cannot be empty")
-            Logger.e(TAG, error.message, error)
+            Logger.e(TAG, error.message ?: "Unknown error", error)
             continuation.resume(Result.failure(error))
             return@suspendCancellableCoroutine
         }
 
         if (!task.isValid()) {
             val error = IllegalStateException("Cannot update invalid task: title is blank")
-            Logger.e(TAG, error.message, error)
+            Logger.e(TAG, error.message ?: "Unknown error", error)
             continuation.resume(Result.failure(error))
             return@suspendCancellableCoroutine
         }
@@ -252,7 +252,7 @@ class TaskRepository private constructor(
 
         if (taskId.isEmpty()) {
             val error = IllegalArgumentException("Task ID cannot be empty")
-            Logger.e(TAG, error.message, error)
+            Logger.e(TAG, error.message ?: "Unknown error", error)
             continuation.resume(Result.failure(error))
             return@suspendCancellableCoroutine
         }
@@ -268,7 +268,7 @@ class TaskRepository private constructor(
                     continuation.resume(Result.success(task))
                 } else {
                     val error = NoSuchElementException("Task not found with ID: $taskId")
-                    Logger.w(TAG, error.message)
+                    Logger.w(TAG, error.message ?: "Unknown error")
                     continuation.resume(Result.failure(error))
                 }
             }
