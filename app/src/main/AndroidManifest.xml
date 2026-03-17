@@ -2,7 +2,44 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--
+    DEBUGGING TIPS:
+
+    Internet permissions are required for Firebase Firestore.
+    If you see network errors in Logcat, verify:
+    1. Device/emulator has internet connection
+    2. google-services.json is correctly placed in app/src/
+    3. Firebase project is properly configured
+
+    To filter logs by tag in Logcat:
+    - Use the search bar: "tag:MainActivity" or "tag:TaskRepository"
+    - Click the funnel icon to save filter for quick access
+    - Use dropdown to filter by log level (Debug, Info, Warning, Error)
+
+    To debug network issues:
+    1. Open Android Studio Profiler (View -> Tool Windows -> Profiler)
+    2. Select your app process
+    3. Click Network tab to see HTTP/Firestore requests
+    4. Look for failed requests with status codes
+
+    To set breakpoints:
+    1. Click in the gutter next to line numbers (red dot appears)
+    2. Click the Debug icon (bug) or press Shift+F9
+    3. Use F8 (Step Over), F7 (Step Into), Shift+F8 (Step Out)
+    4. Inspect variables in the Variables panel
+
+    Common Logcat filters for this app:
+    - "tag:TaskApp_*" - All app logs with standard prefix
+    - "tag:MainActivity" - Main activity lifecycle and actions
+    - "tag:TaskRepository" - Database operations
+    - "package:com.example.task12_13" - All logs from this app
+    -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".TaskApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -10,6 +47,32 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Task12_13" />
+        android:theme="@style/Theme.Task12_13">
+
+        <!--
+        MAIN ACTIVITY:
+
+        Debug MainActivity lifecycle events:
+        - onCreate: Activity initialization
+        - onResume: Activity becomes visible and interactive
+        - onPause: Activity loses focus
+
+        Look for these logs in Logcat with tag:MainActivity
+
+        To inspect the UI:
+        1. Run the app on emulator or device
+        2. Go to Tools -> Layout Inspector
+        3. Select your app process
+        4. View live view hierarchy and component attributes
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>
