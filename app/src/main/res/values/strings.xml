@@ -1,3 +1,27 @@
 <resources>
-    <string name="app_name">task12_13</string>
+    <string name="app_name">Task Manager</string>
+
+    <!-- Main Activity -->
+    <string name="no_tasks_available">No tasks available. Add a task to get started!</string>
+    <string name="add_task">Add Task</string>
+
+    <!-- Task Item -->
+    <string name="task_completed">Task completed</string>
+    <string name="task_not_completed">Task not completed</string>
+    <string name="delete_task">Delete task</string>
+
+    <!-- Add Task Dialog -->
+    <string name="dialog_add_task_title">Add New Task</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_description">Description (optional)</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_required">Title is required</string>
+    <string name="task_added">Task added successfully</string>
+    <string name="task_deleted">Task deleted</string>
+    <string name="task_updated">Task updated</string>
+    <string name="error_loading_tasks">Error loading tasks</string>
+    <string name="error_adding_task">Error adding task</string>
+    <string name="error_deleting_task">Error deleting task</string>
+    <string name="error_updating_task">Error updating task</string>
 </resources>
